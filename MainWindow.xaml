@@ -1,0 +1,45 @@
+﻿<Window x:Class="UD5_Comida.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UD5_Comida"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Background="LightSkyBlue">
+    <Border Margin="10" Padding="10" BorderThickness="3" BorderBrush="Black" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="platosListBox" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ListBox>
+            <Border Grid.Column="1" Background="Gainsboro" Margin="15" Padding="10">
+                <StackPanel>
+                    <TextBlock>Nombre del plato</TextBlock>
+                    <TextBox Text=""/>
+                    <TextBlock>Foto del plato</TextBlock>
+                    <TextBox Text=""/>
+                    <TextBlock>Tipo de comida</TextBlock>
+                    <ComboBox Margin="5"/>
+                    <GroupBox Header="Alergenos" BorderBrush="Black" BorderThickness="2" Padding="5">
+                        <UniformGrid>
+                            <CheckBox>Leche</CheckBox>
+                            <CheckBox>Soja</CheckBox>
+                            <CheckBox>Gluten</CheckBox>
+                            <CheckBox>Sulfitos</CheckBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <Button Click="LimpiarSeleccionButton_Click" x:Name="LimpiarSeleccionButton" Margin="10"
+                  Background="LightSkyBlue" Width="120" HorizontalAlignment="Left">Limpiar selección</Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
