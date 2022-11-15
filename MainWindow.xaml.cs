@@ -20,9 +20,16 @@ namespace UD5_Comida
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowVM vm = new MainWindowVM();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = (object)this.vm;
+        }
+
+        private void LimpiarSeleccionButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.QuitarPlato();
         }
     }
 }

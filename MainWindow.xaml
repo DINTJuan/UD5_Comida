@@ -6,6 +6,41 @@
         xmlns:local="clr-namespace:UD5_Comida"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="LightSkyBlue">
+    <Window.Resources>
+        <Style x:Key="nombrePlato" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="FontFamily" Value="Chinese Wok Food St"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="FontFamily" Value="Taco Salad"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="FontFamily" Value="Slim Summer"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="bandera" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="China">
+                    <Setter Property="Source" Value="Imagenes\china.png"/>
+                    <Setter Property="ToolTip" Value="Comida china"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Mexicana">
+                    <Setter Property="Source" Value="Imagenes\mexico.png"/>
+                    <Setter Property="ToolTip" Value="Comida mexicana"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
+                    <Setter Property="Source" Value="Imagenes\united_states.png"/>
+                    <Setter Property="ToolTip" Value="Comida americana"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
     <Border Margin="10" Padding="10" BorderThickness="3" BorderBrush="Black" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
