@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="LightSkyBlue">
     <Window.Resources>
+        <local:ConvertidorVisibilidad x:Key="convertitVisib"/>
         <Style x:Key="nombrePlato" TargetType="{x:Type TextBlock}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Style.Triggers>
@@ -22,8 +23,8 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="bandera" TargetType="{x:Type Image}">
-            <Setter Property="Width" Value="36"/>
-            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Tipo}" Value="China">
                     <Setter Property="Source" Value="Imagenes\china.png"/>
@@ -39,7 +40,44 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="alergenos" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="seleccion" TargetType="{x:Type StackPanel}">
+            <Setter Property="IsEnabled" Value="true"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PlatoSelecionado}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="false"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate DataType="{x:Type local:Plato}">
+            <Border BorderThickness="1" BorderBrush="Black" Background="AliceBlue" Height="280" Width="240" Margin="10">
+                <UIElement.Effect>
+                    <DropShadowEffect/>
+                </UIElement.Effect>
+                <StackPanel>
+                    <Viewbox Height="60">
+                        <TextBlock Style="{StaticResource nombrePlato}" Text="{Binding Path=Nombre}"/>
+                    </Viewbox>
+                    <Image Margin="5" Width="200" Height="150" Stretch="UniformToFill" Source="{Binding Path=Imagen}"/>
+                    <DockPanel LastChildFill="false">
+                        <Image Style="{StaticResource bandera}" DockPanel.Dock="Left"/>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="0,0,5,0">
+                            <Image Style="{StaticResource alergenos}" Source="Imagenes/gluten.png" ToolTip="Gluten" Visibility="{Binding Path=Gluten, Converter={StaticResource convertitVisib}}"/>
+                            <Image Style="{StaticResource alergenos}" Source="Imagenes/milk.png" ToolTip="Leche" Visibility="{Binding Path=Leche, Converter={StaticResource convertitVisib}}"/>
+                            <Image Style="{StaticResource alergenos}" Source="Imagenes/sulfide.png" ToolTip="Sulfatos" Visibility="{Binding Path=Sulfitos, Converter={StaticResource convertitVisib}}"/>
+                            <Image Style="{StaticResource alergenos}" Source="Imagenes/soybean.png" ToolTip="Soja" Visibility="{Binding Path=Soja, Converter={StaticResource convertitVisib}}"/>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
     </Window.Resources>
     <Border Margin="10" Padding="10" BorderThickness="3" BorderBrush="Black" Background="White">
         <Grid>
@@ -47,8 +85,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="platosListBox" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-               ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="PlaListBox" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+               ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Path=ListaPlatos}" SelectedItem="{Binding Path=PlatoSelecionado}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -56,22 +94,22 @@
                 </ItemsControl.ItemsPanel>
             </ListBox>
             <Border Grid.Column="1" Background="Gainsboro" Margin="15" Padding="10">
-                <StackPanel>
+                <StackPanel Style="{StaticResource seleccion}">
                     <TextBlock>Nombre del plato</TextBlock>
-                    <TextBox Text=""/>
+                    <TextBox Text="{Binding PlatoSelecionado.Nombre}"/>
                     <TextBlock>Foto del plato</TextBlock>
-                    <TextBox Text=""/>
+                    <TextBox Text="{Binding PlatoSelecionado.Imagen}"/>
                     <TextBlock>Tipo de comida</TextBlock>
-                    <ComboBox Margin="5"/>
+                    <ComboBox Margin="5" ItemsSource="{Binding Path=Banderas}" SelectedItem="{Binding PlatoSelecionado.Tipo}"/>
                     <GroupBox Header="Alergenos" BorderBrush="Black" BorderThickness="2" Padding="5">
                         <UniformGrid>
-                            <CheckBox>Leche</CheckBox>
-                            <CheckBox>Soja</CheckBox>
-                            <CheckBox>Gluten</CheckBox>
-                            <CheckBox>Sulfitos</CheckBox>
+                            <CheckBox IsChecked="{Binding PlatoSelecionado.Leche}">Leche</CheckBox>
+                            <CheckBox IsChecked="{Binding PlatoSelecionado.Soja}">Soja</CheckBox>
+                            <CheckBox IsChecked="{Binding PlatoSelecionado.Gluten}">Gluten</CheckBox>
+                            <CheckBox IsChecked="{Binding PlatoSelecionado.Sulfitos}">Sulfitos</CheckBox>
                         </UniformGrid>
                     </GroupBox>
-                    <Button Click="LimpiarSeleccionButton_Click" x:Name="LimpiarSeleccionButton" Margin="10"
+                    <Button Click="LimpiarSecButton_Click" x:Name="LimpiarSecButton" Margin="10"
                   Background="LightSkyBlue" Width="120" HorizontalAlignment="Left">Limpiar selección</Button>
                 </StackPanel>
             </Border>

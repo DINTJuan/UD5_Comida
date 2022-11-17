@@ -14,6 +14,19 @@ namespace UD5_Comida
         private ObservableCollection<Plato> listaPlatos;
         private Plato platoSelecionado;
 
+        private ObservableCollection<String> banderas;
+
+        public ObservableCollection<String> Banderas
+        {
+            get { return banderas; }
+            set 
+            { 
+                banderas = value;
+                this.NotifyPropertyChanged("Banderas");
+            }
+        }
+
+
         public ObservableCollection<Plato> ListaPlatos
         {
             get { return listaPlatos; }
@@ -41,6 +54,11 @@ namespace UD5_Comida
         public MainWindowVM()
         {
             this.ListaPlatos = Plato.GetSamples(@"C:\2ºDAM\Desarollo de interfaces\1ºTrimestre\UD5\recursos comida\FotosPlatos");
+            ObservableCollection<String> banderasn = new ObservableCollection<string>();
+            banderasn.Add("China");
+            banderasn.Add("Mexicana");
+            banderasn.Add("Americana");
+            this.banderas = banderasn;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

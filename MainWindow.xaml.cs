@@ -27,7 +27,7 @@ namespace UD5_Comida
             this.DataContext = (object)this.vm;
         }
 
-        private void LimpiarSeleccionButton_Click(object sender, RoutedEventArgs e)
+        private void LimpiarSecButton_Click(object sender, RoutedEventArgs e)
         {
             vm.QuitarPlato();
         }
