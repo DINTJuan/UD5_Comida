@@ -58,6 +58,7 @@ namespace UD5_Comida
             banderasn.Add("China");
             banderasn.Add("Mexicana");
             banderasn.Add("Americana");
+            banderasn.Add("Griega");
             this.banderas = banderasn;
         }
 

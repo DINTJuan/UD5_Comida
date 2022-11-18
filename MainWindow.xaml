@@ -20,6 +20,9 @@
                 <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
                     <Setter Property="FontFamily" Value="Slim Summer"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Griega">
+                    <Setter Property="FontFamily" Value="Dalek Pinpoint"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="bandera" TargetType="{x:Type Image}">
@@ -36,6 +39,10 @@
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Tipo}" Value="Americana">
                     <Setter Property="Source" Value="Imagenes\united_states.png"/>
+                    <Setter Property="ToolTip" Value="Comida americana"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}" Value="Griega">
+                    <Setter Property="Source" Value="Imagenes\grecia.png"/>
                     <Setter Property="ToolTip" Value="Comida americana"/>
                 </DataTrigger>
             </Style.Triggers>

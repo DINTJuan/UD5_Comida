@@ -37,6 +37,7 @@ namespace UD5_Comida
             lista.Add(new Plato("Cerdo agridulce", Path.Combine(rutaImagenes, @"cerdoagridulce.jpg"), "China", true, true, false, true));
             lista.Add(new Plato("Hot dogs", Path.Combine(rutaImagenes, @"hotdog.jpg"), "Americana", true, true, true, true));
             lista.Add(new Plato("Fajitas", Path.Combine(rutaImagenes, @"fajitas.jpg"), "Mexicana", true, false, false, true));
+            lista.Add(new Plato("Musaka", Path.Combine(rutaImagenes, @"musaka.jpg"), "Griega", true, false, true, true));
 
             return lista;
         }
