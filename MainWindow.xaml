@@ -49,6 +49,7 @@
         </Style>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Margin" Value="10"/>
+            <Setter Property="Template" Value="{DynamicResource TextBoxControlTemplateSombra}"/>
         </Style>
         <Style x:Key="alergenos" TargetType="{x:Type Image}">
             <Setter Property="Width" Value="30"/>
@@ -61,6 +62,9 @@
                     <Setter Property="IsEnabled" Value="false"/>
                 </DataTrigger>
             </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Template" Value="{DynamicResource CheckBoxControlTemplateRedondear}"/>
         </Style>
         <DataTemplate DataType="{x:Type local:Plato}">
             <Border BorderThickness="1" BorderBrush="Black" Background="AliceBlue" Height="280" Width="240" Margin="10">
@@ -108,7 +112,7 @@
                     <TextBox Text="{Binding PlatoSelecionado.Imagen}"/>
                     <TextBlock>Tipo de comida</TextBlock>
                     <ComboBox Margin="5" ItemsSource="{Binding Path=Banderas}" SelectedItem="{Binding PlatoSelecionado.Tipo}"/>
-                    <GroupBox Header="Alergenos" BorderBrush="Black" BorderThickness="2" Padding="5">
+                    <GroupBox Header="Alergenos" BorderBrush="Black" BorderThickness="2" Padding="5" Template="{DynamicResource GroupBoxControlTemplateBorde}">
                         <UniformGrid>
                             <CheckBox IsChecked="{Binding PlatoSelecionado.Leche}">Leche</CheckBox>
                             <CheckBox IsChecked="{Binding PlatoSelecionado.Soja}">Soja</CheckBox>
@@ -117,7 +121,7 @@
                         </UniformGrid>
                     </GroupBox>
                     <Button Click="LimpiarSecButton_Click" x:Name="LimpiarSecButton" Margin="10"
-                  Background="LightSkyBlue" Width="120" HorizontalAlignment="Left">Limpiar selección</Button>
+                  Background="LightSkyBlue" Width="120" HorizontalAlignment="Left" Template="{DynamicResource ButtonControlTemplateBorde}">Limpiar selección</Button>
                 </StackPanel>
             </Border>
         </Grid>
